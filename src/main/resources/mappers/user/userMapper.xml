@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="user">
+  <select id="login_check" resultType="String" parameterType="jun.tour.go.Model.User.DTO.UserDTO">
+  	select u_name from t_user
+  	where u_id=#{u_id} and u_password=#{u_password}
+  </select>
+  <insert id="joinuser">
+  	insert into t_user(u_id,u_password,u_name,u_address,u_phone) 
+  	values(#{u_id},#{u_password},#{u_name},#{u_address},#{u_phone})
+  </insert>
+  
+  <select id="ViewUser"
+  resultType="jun.tour.go.Model.User.DTO.UserDTO">
+  select * from t_user
+  where u_id=#{u_id}
+  </select>
+  
+  <update id="updateUser">
+  update t_user
+  set u_password=#{u_password},u_name=#{u_name},u_address=#{u_address},u_phone=#{u_phone}
+  where u_id=#{u_id}
+  </update>
+  
+  <select id="checkPw" resultType="int">
+  	select count(*) from t_user
+  	where  u_id=#{u_id} and u_password=#{u_password}
+  </select>
+  
+  <delete id="deleteUser">
+  	delete from t_user
+  	where u_id=#{u_id}
+  </delete>
+  
+  </mapper>
