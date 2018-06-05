@@ -1,12 +1,28 @@
 package jun.tour.go.Model.User.DTO;
 
-public class UserDTO {
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+public class UserDTO implements UserDetails{
 
 	private String u_id;
 	private String u_password;
 	private String u_name;
 	private String u_address;
 	private String u_phone;
+	private List<Role> u_role;
+	
+	
+	
+	public List<Role> getU_role() {
+		return u_role;
+	}
+	public void setU_role(List<Role> u_role) {
+		this.u_role = u_role;
+	}
 	public UserDTO() {
 		super();
 	}
@@ -44,5 +60,40 @@ public class UserDTO {
 	}
 	public void setU_phone(String u_phone) {
 		this.u_phone = u_phone;
+	}
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+
+		return u_role;
+	}
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return u_password;
+	}
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return u_name;
+	}
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 }

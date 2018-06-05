@@ -27,7 +27,6 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@Secured("ROLE_USER")
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model,
 			@RequestParam(value="user",defaultValue="",required=true)String user) {

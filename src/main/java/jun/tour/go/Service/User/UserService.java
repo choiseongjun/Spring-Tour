@@ -2,7 +2,7 @@ package jun.tour.go.Service.User;
 
 import jun.tour.go.Model.User.DTO.UserDTO;
 
-public interface UserService {
+public interface UserService{
 
 	public String loginCheck(UserDTO dto);
 	public void insertUser(UserDTO dto);

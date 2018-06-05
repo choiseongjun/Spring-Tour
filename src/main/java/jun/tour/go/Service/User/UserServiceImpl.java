@@ -2,12 +2,15 @@ package jun.tour.go.Service.User;
 
 import javax.inject.Inject;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import jun.tour.go.Model.User.DAO.UserDAO;
 import jun.tour.go.Model.User.DTO.UserDTO;
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService,UserDetailsService {
 
 	@Inject
 	UserDAO userDao;
@@ -46,6 +49,14 @@ public class UserServiceImpl implements UserService {
 	public String adminloginCheck(UserDTO dto) {
 		// TODO Auto-generated method stub
 		return userDao.adminloginCheck(dto);
+	}
+
+	@Override
+	public UserDTO loadUserByUsername(String u_id) throws UsernameNotFoundException {
+
+		UserDTO user =  userDao.viewMember(u_id);
+		if(user==null) throw new UsernameNotFoundException("not found user");
+		return user;
 	}
 
 }
