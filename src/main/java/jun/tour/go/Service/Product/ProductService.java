@@ -11,4 +11,5 @@ public interface ProductService {
 	void deleteProduct(int p_code);
 	void insertProduct(ProductDTO dto);
 	String fileInfo(int p_code);
+	ProductDTO categoryProduct(int p_ctycode);
 }

@@ -8,7 +8,7 @@ public interface CartDAO {
 	public List<CartDTO> cartMoney();
 	public void insert(CartDTO dto);
 	public List<CartDTO> listCart(String u_id);
-	public void delete(int cart_id);
+	public void delete(int r_id);
 	public void deleteAll(String userid);
 	public void update(int cart_id);
 	public int sumMoney(String userid);

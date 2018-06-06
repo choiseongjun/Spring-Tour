@@ -48,4 +48,9 @@ public class ProductDAOImpl implements ProductDAO {
 		return null;
 	}
 
+	@Override
+	public ProductDTO categoryProduct(int p_ctycode) {
+		return sqlSession.selectOne("product.product_category",p_ctycode);
+	}
+
 }

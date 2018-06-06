@@ -26,6 +26,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 		
 		String username=authentication.getName();
 		String password=(String) authentication.getCredentials();
+		System.out.println("아이디"+username+"비밀번호"+password);
 		
 		UserDTO userDto;
 		Collection<? extends GrantedAuthority> authorities;

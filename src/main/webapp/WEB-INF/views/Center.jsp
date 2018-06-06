@@ -223,11 +223,11 @@ $(window).load(function() {
 						<div class="thumbnail clearfix">
 							<a href="#">
 								<figure>
-									<img src="http://via.placeholder.com/277x277" alt="">
+									<img src="${path }/images/korea1.jpg" width="277" height="277"alt="">
 									<em></em>
 								</figure>
 								<div class="caption">
-									Maldives
+									Korea
 								</div>								
 							</a>								
 						</div>
@@ -323,13 +323,13 @@ $(window).load(function() {
 <div class="row">
 <div class="span9">
 	
-<h1>Welcome to traveler</h1>
+<h1>Welcome to Korea</h1>
 
 <h3>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</h3>
 
 <div class="thumb1">
 	<div class="thumbnail clearfix">
-		<figure class="img-polaroid"><img src="http://via.placeholder.com/208x134" alt=""></figure>
+		<figure class="img-polaroid"><img src="${path }/images/korea.jpg" alt=""></figure>
 		<div class="caption">
 			<p>
 				Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. Ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat consectetuer adipiscing elit. Nunc suscipit. 

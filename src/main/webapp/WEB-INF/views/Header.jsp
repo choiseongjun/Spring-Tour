@@ -76,7 +76,7 @@ $(window).load(function() {
 						<c:choose>
 						<c:when test="${sessionScope.adminu_id==null}">
 						
-						<li><a href="index-1.html">한국</a></li>
+						<li><a href="${path }/List/detail/${dto.p_ctycode}">한국</a></li>
 						<li><a href="index-1.html">미국</a></li>
 						<li><a href="index-1.html">일본</a></li>
 						<li><a href="index-1.html">중국</a></li>

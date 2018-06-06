@@ -49,4 +49,9 @@ public class ProductServiceImpl implements ProductService {
 		return null;
 	}
 
+	@Override
+	public ProductDTO categoryProduct(int p_ctycode) {
+	return productDao.detailProduct(p_ctycode);
+	}
+
 }

@@ -28,42 +28,48 @@ $(function(){
 		<c:otherwise>
 			<form name="form1" method="post"
 			action="${path}/shop/cart/update.do">
-				<table border="1" width="400px">
+				<table border="1" width="800px">
 					<tr>
-						<th>상품명</th>
-						<th>단가</th>
-						<th>수량</th>
+						<th>도시</th>
+						<th>패키지가격</th>
+						<th>탑승인원</th>
 						<th>금액</th>
+						<th>날짜</th>
 						<th>&nbsp;</th>
 					</tr>
 				<c:forEach var="row" items="${map.list }">
 					<tr>
-						<td>${map.product_name }</td>
-						<td>${map.price}</td>
-						<td><input type="number" name="amount"
-							value="${row.r_amount }">
+						<td>${row.p_city }</td>
+						<td>${row.p_price }</td>
+						<td><input type="number" name=r_personnel
+							value="${row.r_personnel}">
 							<input type="hidden" name="cart_id"
 							value="${row.r_id }"></td>
 							<td>${row.money }</td>
+							<td>${row.p_date }</td>
 							<td>
-		<c:if test="${sessionScope.userid !=null }">
-		<a href="${path }/shop/cart/delete.do?cart_id=${row.p_code }">삭제</a></td>
-		</c:if>
-							
+
+		<c:if test="${sessionScope.u_id !=null }">
+		<a href="${path }/Cart/delete.do?r_id=${row.r_id }">취소하기</a></td>
+							</c:if>
 							
 					</tr>
 					
-				</c:forEach>
+	
 				<tr>
 					<td colspan="5" align="right">
-					장바구니 금액 합계=${map.sumMoney }<br>
-					배송료:${map.fee}<br>
-					총합계:${map.sum}
+					예약 총 금액 합계=${row.money }<br>
+					마일리지적립:${row.money/100}<br>
+				
 					</td>
-				</tr>
+				</tr>	</c:forEach>
+				<tr>
+					<td colspan="5" align="right">
+					토탈금액:${map.totalMoney }
+					</td>
 				</table>
 				<button id="btnUpdate">수정</button>
-			<button type="button" id="btnDelete">장바구니 비우기</button>
+			<button type="button" id="btnDelete">예약 삭제하기</button>
 			</form>
 		</c:otherwise>
 </c:choose>

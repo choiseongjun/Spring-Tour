@@ -22,6 +22,8 @@ $(function(){
 		return;
 	}
 	//폼 데이터를 서버로 제출
+
+
 	document.form1.action="${path}/user/login_check.do";
 	document.form1.submit();
 	});

@@ -12,25 +12,8 @@ public class ProductDTO {
 	private int p_price;
 	private String p_img;
 	private String p_reserve;
-	private String p_ctycode;
+	private int p_ctycode;
 	private MultipartFile file1;
-	
-	
-	public MultipartFile getFile1() {
-		return file1;
-	}
-	public void setFile1(MultipartFile file1) {
-		this.file1 = file1;
-	}
-	public ProductDTO() {
-		super();
-	}
-	@Override
-	public String toString() {
-		return "ProductDTO [p_code=" + p_code + ", p_city=" + p_city + ", p_date=" + p_date + ", p_air=" + p_air
-				+ ", p_content=" + p_content + ", p_price=" + p_price + ", p_img=" + p_img + ", p_reserve=" + p_reserve
-				+ ", p_ctycode=" + p_ctycode + "]";
-	}
 	public int getP_code() {
 		return p_code;
 	}
@@ -79,11 +62,28 @@ public class ProductDTO {
 	public void setP_reserve(String p_reserve) {
 		this.p_reserve = p_reserve;
 	}
-	public String getP_ctycode() {
+	public int getP_ctycode() {
 		return p_ctycode;
 	}
-	public void setP_ctycode(String p_ctycode) {
+	public void setP_ctycode(int p_ctycode) {
 		this.p_ctycode = p_ctycode;
 	}
+	public MultipartFile getFile1() {
+		return file1;
+	}
+	public void setFile1(MultipartFile file1) {
+		this.file1 = file1;
+	}
+	@Override
+	public String toString() {
+		return "ProductDTO [p_code=" + p_code + ", p_city=" + p_city + ", p_date=" + p_date + ", p_air=" + p_air
+				+ ", p_content=" + p_content + ", p_price=" + p_price + ", p_img=" + p_img + ", p_reserve=" + p_reserve
+				+ ", p_ctycode=" + p_ctycode + ", file1=" + file1 + ", getP_code()=" + getP_code() + ", getP_city()="
+				+ getP_city() + ", getP_date()=" + getP_date() + ", getP_air()=" + getP_air() + ", getP_content()="
+				+ getP_content() + ", getP_price()=" + getP_price() + ", getP_img()=" + getP_img() + ", getP_reserve()="
+				+ getP_reserve() + ", getP_ctycode()=" + getP_ctycode() + ", getFile1()=" + getFile1() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+	}
+	
 	
 }

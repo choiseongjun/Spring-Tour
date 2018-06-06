@@ -3,11 +3,29 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="cart">
+  
+  <delete id="delete">
+  	delete from t_reserve
+  	where r_id=#{r_id}
+  </delete>
+  
+ <select id="sumMoney" resultType="int">
+  select nvl(sum(p_price*r_personnel),0) money
+from t_product p,t_reserve c
+where p.p_code=c.p_code
+and u_id=#{u_id}
+ </select>
+  
+  <insert id="insert">
+  	insert into t_reserve(r_id,u_id,p_code,r_personnel)
+  	values(seq_t_reserve.nextval,#{u_id},#{p_code},#{r_personnel})
+  </insert>
+  
   <select id="listCart"
   resultType="jun.tour.go.Model.Cart.DTO.CartDTO">
   select r_id,u.u_id,u.u_name,
-        p.p_code,p_city,r_amount,p_price
-        ,p_price*r_amount money
+        p.p_code,p_city,r_personnel,p_price,p_date
+        ,p_price*r_personnel money
 from t_user u,t_reserve r,t_product p
 where u.u_id=r.u_id and p.p_code=r.p_code 
 and u.u_id=#{u_id}

@@ -21,8 +21,7 @@ public class CartDAOImpl implements CartDAO {
 
 	@Override
 	public void insert(CartDTO dto) {
-		// TODO Auto-generated method stub
-
+		sqlSession.insert("cart.insert",dto);
 	}
 
 	@Override
@@ -31,9 +30,8 @@ public class CartDAOImpl implements CartDAO {
 	}
 
 	@Override
-	public void delete(int cart_id) {
-		// TODO Auto-generated method stub
-
+	public void delete(int r_id) {
+		sqlSession.delete("cart.delete",r_id);
 	}
 
 	@Override
@@ -49,9 +47,8 @@ public class CartDAOImpl implements CartDAO {
 	}
 
 	@Override
-	public int sumMoney(String userid) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int sumMoney(String u_id) {
+		return sqlSession.selectOne("cart.sumMoney",u_id);
 	}
 
 	@Override

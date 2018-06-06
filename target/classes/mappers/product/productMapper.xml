@@ -4,6 +4,13 @@
   
  
  <mapper namespace="product">
+ 	
+ <select id="product_category" 
+resultType="jun.tour.go.Model.Product.DTO.ProductDTO">
+	select * from t_product
+	where p_ctycode=#{p_ctycode}
+</select>
+ 
  	<select id="detail_product" 
 resultType="jun.tour.go.Model.Product.DTO.ProductDTO">
 	select * from t_product
