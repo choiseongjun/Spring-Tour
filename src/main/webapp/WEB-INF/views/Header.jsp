@@ -9,25 +9,32 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt"
 uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }" />
+<%@taglib uri="http://www.springframework.org/security/tags" prefix="s"%>
 <title>about</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Your description">
 <meta name="keywords" content="Your keywords">
 <meta name="author" content="Your name">
-<link rel="icon" href="${path}/images/favicon.ico" type="image/x-icon">
-<link rel="shortcut icon" href="${path}/images/favicon.ico" type="image/x-icon" />
+<link rel="icon" href="${path }/resources/style/images/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="${path }/resources/style/images/favicon.ico" type="image/x-icon" />
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-<link rel="stylesheet" href="${path}/css/bootstrap.css" type="text/css" media="screen">
-<link rel="stylesheet" href="${path}/css/bootstrap-responsive.css" type="text/css" media="screen">
-	<link href="${path}/css/font-awesome.css" rel="stylesheet">
-<link rel="stylesheet" href="${path}/css/style.css" type="text/css" media="screen">
 
-<script type="text/javascript" src="${path}/js/jquery.js"></script>  
-<script type="text/javascript" src="${path}/js/jquery.easing.1.3.js"></script>
-<script type="text/javascript" src="${path}/js/superfish.js"></script>
+<link rel="stylesheet" href="${path }/resources/style/css/bootstrap.css" type="text/css" media="screen">
+<link rel="stylesheet" href="${path }/resources/style/css/bootstrap-responsive.css" type="text/css" media="screen">
+	<link href="${path }/resources/style/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="${path }/resources/style/css/style.css" type="text/css" media="screen">
 
-<script type="text/javascript" src="${path}/js/jquery.ui.totop.js"></script>
+<%-- <script type="text/javascript" src="${path}/js/jquery.js"></script>  
+<script type="text/javascript" src="${path}/js/jquery.easing.1.3.js"></script> --%>
+<%-- <script type="text/javascript" src="${path }/resources/style/js/superfish.js"></script>
+ --%><%-- 
+<script type="text/javascript" src="${path}/js/jquery.ui.totop.js"></script> --%>
+<%-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
+
+<script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+ --%>
 
 <script>
 $(document).ready(function() {
@@ -53,14 +60,8 @@ $(window).load(function() {
 <div id="main">
 
 <div class="top1 clearfix">
-<header><div class="logo_wrapper log"><a href="${path }" class="logo"><img src="${path }/images/logojun.png" alt=""></a></div></header>
+<header><div class="logo_wrapper log"><a href="${path }" class="logo"><img src="${path }/resources/style/images/logojun.png" alt=""></a></div></header>
 <div class="top2 clearfix">
-<div class="search-form-wrapper clearfix">
-<form id="search-form" action="search.php" method="GET" accept-charset="utf-8" class="navbar-form" >
-	<input type="text" name="s" value='Search' onBlur="if(this.value=='') this.value='Search'" onFocus="if(this.value =='Search' ) this.value=''">
-	<a href="#" onClick="document.getElementById('search-form').submit()"></a>
-</form>	
-</div>
 	<div class="menu_wrapper clearfix">
 		<div class="navbar navbar_">
 			<div class="navbar-inner navbar-inner_">
@@ -73,26 +74,22 @@ $(window).load(function() {
 				<div class="nav-collapse nav-collapse_ collapse">
 					<ul class="nav sf-menu clearfix">
 						<li><a href="${path }">home</a></li>
-						<c:choose>
-						<c:when test="${sessionScope.adminu_id==null}">
-						
-						<li><a href="${path }/List/detail/${dto.p_ctycode}">한국</a></li>
-						<li><a href="index-1.html">미국</a></li>
-						<li><a href="index-1.html">일본</a></li>
-						<li><a href="index-1.html">중국</a></li>
-						<li><a href="index-1.html">필리핀</a></li>
-						<li><a href="${path}/product/TourList.do">hot tours</a></li>
-						<li><a href="index-3.html">Destination</a></li>
-								</c:when>
-								<c:when test="${sessionScope.adminu_id!=null}">
-						<li><a href="${path}/product/write.do">update Product</a></li>
-						<li><a href="${path}/product/TourList.do">bbb</a></li>
-						<li><a href="index-3.html">aaa</a></li>
-								</c:when>
-						</c:choose>
-					<c:choose>
-		<c:when test="${sessionScope.u_id==null&&sessionScope.adminu_id==null }">
-						<li class="sub-menu sub-menu-1"><a href="#">Pages<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+				<s:authorize ifAnyGranted="ROLE_USER">
+						<li><a href="${path}/Country/List.do?p_ctycode=1">한국</a></li>
+						<li><a href="${path}/Country/List.do?p_ctycode=2">미국</a></li>
+						<li><a href="${path}/Country/List.do?p_ctycode=3">일본</a></li>
+						<li><a href="${path}/Country/List.do?p_ctycode=4">중국</a></li>
+						<%-- <li><a href="${path }/chart1.do">항공정보보기</a></li> --%>
+						<li><a href="${path}/product/TourList.do">전체보기</a></li>
+						<li><a href="${path }/Board/list.do">자유 게시판</a></li>
+							</s:authorize>
+						<s:authorize ifAnyGranted="ROLE_ADMIN">
+						<li><a href="${path}/product/write.do">상품 등록하기</a></li>
+						<li><a href="${path}/chart0.do">차트로 보기</a></li>
+						<li><a href="${path }/Board/list.do">자유 게시판</a></li>
+						</s:authorize>
+							<s:authorize ifNotGranted="ROLE_USER"><s:authorize ifNotGranted="ROLE_ADMIN">
+						<li class="sub-menu sub-menu-1"><a href="${path}/user/login.do">LOGIN<i class="fa fa-angle-down" aria-hidden="true"></i></a>
 							<ul>
 								<li><a href="${path}/user/login.do">Sign-in</a></li>						
 								<li><a href="${path}/user/joinpage.do">sign-up</a></li>
@@ -100,39 +97,39 @@ $(window).load(function() {
 								<li><a href="404.html">404 page not found</a></li>
 							</ul>
 						</li>
-				</c:when>
-			<c:when test="${sessionScope.u_id!=null}">
-			<li class="sub-menu sub-menu-1"><a href="${path }/Cart/list.do">MyPages<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+						</s:authorize>
+	</s:authorize>
+				<s:authorize ifAnyGranted="ROLE_USER">
+			<li class="sub-menu sub-menu-1"><a href="${path }/Cart/list.do">장바구니<i class="fa fa-angle-down" aria-hidden="true"></i></a>
 							<ul>
 								<li><a href="${path}/user/logout.do">log-out</a></li>
-								<li><a href="${path}/user/view.do?u_id=${u_id}">UpdateInfo</a></li>
-								<li><a href="404.html">404 page not found</a></li>
+								<li><a href="${path}/user/view.do?u_id=${u_id}">나의 정보</a></li>
 							</ul>
 						</li>
-	</c:when>
-			<c:when test="${sessionScope.adminu_id!=null}">
+	</s:authorize>
+			<s:authorize ifAnyGranted="ROLE_ADMIN">
 			<li class="sub-menu sub-menu-1"><a href="#">MyPages<i class="fa fa-angle-down" aria-hidden="true"></i></a>
 							<ul>
 								<li><a href="${path}/user/logout.do">log-out</a></li>
 							</ul>
 						</li>
-						</c:when>
-	</c:choose>
-						<li class="sub-menu sub-menu-1"><a href="#">Blog <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+					</s:authorize>
+	
+					<!-- 	<li class="sub-menu sub-menu-1"><a href="#">Blog <i class="fa fa-angle-down" aria-hidden="true"></i></a>
 							<ul>
-								<li><a href="${path}/Board/boardList.do">QnA</a></li>
+								<li><a href="#">Blog</a></li>
 								<li><a href="blog-post.html">Blog Poast</a></li>
 
 							</ul>
-						</li>
-						<li><a href="index-6.html">contacts</a></li>
+						</li> -->
+						<li><a href="${path }/email/write.do">이메일로 문의 및 찾아오시는 길</a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>	
-</div>
-<script type="text/javascript" src="js/bootstrap.js"></script>
+</div><%-- 
+<script type="text/javascript" src="js/bootstrap.js"></script> --%>
 </body>
 </html>

@@ -50,8 +50,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public ProductDTO categoryProduct(int p_ctycode) {
-	return productDao.detailProduct(p_ctycode);
+	public List<ProductDTO> categoryProduct(int p_ctycode) {
+	return productDao.categoryProduct(p_ctycode);
 	}
 
 }

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="board">
+  
+  <delete id="delete">
+  update board set show='N' where bno=#{bno}
+  </delete>
+  
+  <insert id="updateAttach">
+  	insert into attach (fullName,bno) values
+  	(#{fullName},#{bno})
+  </insert>
+  
+  <update id="update">
+  	update board
+  	set title=#{title},content=#{content}
+  	where bno=#{bno}
+  </update>
+  
+  <delete id="deleteFile">
+  	delete from attach
+  	where fullname=${fullname}
+  </delete>
+  
+  
+  <!-- 첨부파일 목록 -->
+	<select id="getAttach" 	resultType="String">
+		select fullName 
+		from attach
+		where bno=#{bno}
+		order by regdate desc	
+	</select>
+
+  
+  <!-- 첨부파일 정보 저장 -->
+  <insert id="addAttach">
+  insert into attach (fullName,bno) values
+  ( #{fullName},seq_board.currval)
+  </insert>
+  
+  <select id="read" resultType="jun.tour.go.Model.Board.DTO.BoardDTO">
+ select bno,title,b.regdate,content,viewcnt,u_name,writer
+  from board b,t_user u
+  where b.writer=u.u_id and bno=#{bno}
+  </select>
+  
+  <update id="increaseViewcnt">
+  	update board set viewcnt=viewcnt+1
+  	where bno=#{bno}
+  </update>
+  
+  <select id="countArticle" resultType="int">
+  select count(*)
+  from board b,t_user u
+  <include refid="search" />
+  </select>
+  <sql id="search">
+  	<choose>
+  	<when test="search_option=='all'">
+  		where b.writer=u.u_id 
+ 		and show='Y'
+ 		and ${search_option} like #{keyword}
+  	</when>
+  	<otherwise>
+		  	where b.writer=u.u_id 
+		 and show='Y'
+		 and (writer like #{keyword}
+		  or title like #{keyword}
+		  or content like #{keyword} )
+ 	</otherwise>
+  	</choose>
+  </sql>
+  
+  	<select id="listAll"
+  	resultType="jun.tour.go.Model.Board.DTO.BoardDTO">
+	<include refid="paging_header" />
+                  select bno,title,writer,regdate,viewcnt,show
+                  ,(select count(*) from reply where bno=b.bno) cnt
+                   from board b,t_user u
+                   <include refid="search" />
+                  	order by bno desc
+                  	<include refid="paging_footer" />
+  	</select>
+  	<sql id="paging_header">
+  		select * 
+      from(
+           select rownum as rn, A.*
+            from(
+  	</sql>
+  	<sql id="paging_footer">
+  	      ) A
+    )where rn between #{start} and #{end}
+  	</sql>
+  
+  <insert id="insert">
+  	insert into board(bno,title,content,writer) values
+  	(seq_board.nextval,#{title},#{content},#{writer})
+  </insert>
+  
+  	
+  </mapper>

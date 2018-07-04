@@ -1,0 +1,16 @@
+{"fields":[{"id":"airlineNm"},
+           {"id":"arrAirportNm"},
+           {"id":"arrPlandTime"},
+           {"id":"depAirportNm"},
+           {"id":"depPlandTime"},
+           {"id":"economyCharge"},
+           {"id":"prestigeCharge"},
+           {"id":"vihicleId"}],"records":[
+               {"depAirportNm":"광주","depPlandTime":"201610010815","economyCharge":"57900","arrAirportNm":"제주",
+            	   "prestigeCharge":"0","arrPlandTime":"201610010905","vihicleId":"OZ8141","airlineNm":"아시아나항공"},
+               {"depAirportNm":"광주","depPlandTime":"201610011100","economyCharge":"57900","arrAirportNm":"제주",
+            		   "prestigeCharge":"0","arrPlandTime":"201610011150","vihicleId":"OZ8143","airlineNm":"아시아나항공"},
+               {"depAirportNm":"광주","depPlandTime":"201610011545","economyCharge":"57900","arrAirportNm":"제주",
+            			   "prestigeCharge":"0","arrPlandTime":"201610011635","vihicleId":"OZ8145","airlineNm":"아시아나항공"},
+               {"depAirportNm":"광주","depPlandTime":"201610011910","economyCharge":"57900","arrAirportNm":"제주",
+            				   "prestigeCharge":"0","arrPlandTime":"201610012000","vihicleId":"OZ8147","airlineNm":"아시아나항공"}]}

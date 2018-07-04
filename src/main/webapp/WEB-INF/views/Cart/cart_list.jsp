@@ -3,6 +3,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:set var="path" value="${pageContext.request.contextPath }" />
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <%@ include file="../Header.jsp" %>
@@ -20,22 +25,24 @@ $(function(){
 </script>
 </head>
 <body>
-<h2>장바구니</h2>
+<div id="content">
+<center>
+<h2>예약 화면</h2>
 <c:choose>
 	<c:when test="${map.count==0 }"><!-- map으로 받아왔기에 -->
 		장바구니가 비었습니다.
 	</c:when>
 		<c:otherwise>
 			<form name="form1" method="post"
-			action="${path}/shop/cart/update.do">
-				<table border="1" width="800px">
+			action="${path}/Cart/update.do">
+				<table border="1" width="800px" height="500">
 					<tr>
 						<th>도시</th>
 						<th>패키지가격</th>
 						<th>탑승인원</th>
 						<th>금액</th>
 						<th>날짜</th>
-						<th>&nbsp;</th>
+						<th>이미지</th>
 					</tr>
 				<c:forEach var="row" items="${map.list }">
 					<tr>
@@ -43,28 +50,30 @@ $(function(){
 						<td>${row.p_price }</td>
 						<td><input type="number" name=r_personnel
 							value="${row.r_personnel}">
-							<input type="hidden" name="cart_id"
+							<input type="hidden" name="r_id"
 							value="${row.r_id }"></td>
 							<td>${row.money }</td>
 							<td>${row.p_date }</td>
+							<td><img src="${path }/images/${row.p_img}" width="100px"
+					height="300px"></td>
 							<td>
 
-		<c:if test="${sessionScope.u_id !=null }">
-		<a href="${path }/Cart/delete.do?r_id=${row.r_id }">취소하기</a></td>
-							</c:if>
+	
+		<a href="${path }/Cart/delete.do?r_id=${row.r_id}">취소하기</a></td>
+						
 							
 					</tr>
 					
 	
 				<tr>
-					<td colspan="5" align="right">
+					<td colspan="6" align="right">
 					예약 총 금액 합계=${row.money }<br>
 					마일리지적립:${row.money/100}<br>
 				
 					</td>
 				</tr>	</c:forEach>
 				<tr>
-					<td colspan="5" align="right">
+					<td colspan="7" align="right">
 					토탈금액:${map.totalMoney }
 					</td>
 				</table>
@@ -74,5 +83,7 @@ $(function(){
 		</c:otherwise>
 </c:choose>
 	<button type="button" id="btnList">상품목록</button>
+	</center>
+	</div>
 </body>
 </html>

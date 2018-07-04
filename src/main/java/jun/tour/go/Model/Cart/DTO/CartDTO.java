@@ -1,5 +1,6 @@
 package jun.tour.go.Model.Cart.DTO;
 
+import jun.tour.go.Model.User.DTO.UserDTO;
 
 public class CartDTO {
 
@@ -12,7 +13,31 @@ public class CartDTO {
 	private int money;
 	private int r_personnel;
 	private String p_date;//날짜확인용
+	private String p_content;
+	private String p_img;
 	
+
+
+	
+	
+	public String getP_content() {
+		return p_content;
+	}
+	public void setP_content(String p_content) {
+		this.p_content = p_content;
+	}
+	public String getP_img() {
+		return p_img;
+	}
+	public void setP_img(String p_img) {
+		this.p_img = p_img;
+	}
+	public String getU_id() {
+		return u_id;
+	}
+	public void setU_id(String u_id) {
+		this.u_id = u_id;
+	}
 	public String getP_date() {
 		return p_date;
 	}
@@ -25,12 +50,7 @@ public class CartDTO {
 	public void setR_id(int r_id) {
 		this.r_id = r_id;
 	}
-	public String getU_id() {
-		return u_id;
-	}
-	public void setU_id(String u_id) {
-		this.u_id = u_id;
-	}
+	
 	public String getName() {
 		return name;
 	}
@@ -70,8 +90,10 @@ public class CartDTO {
 	@Override
 	public String toString() {
 		return "CartDTO [r_id=" + r_id + ", u_id=" + u_id + ", name=" + name + ", p_code=" + p_code + ", p_city="
-				+ p_city + ", p_price=" + p_price + ", money=" + money + ", r_personnel=" + r_personnel + "]";
+				+ p_city + ", p_price=" + p_price + ", money=" + money + ", r_personnel=" + r_personnel + ", p_date="
+				+ p_date + ", p_content=" + p_content + ", p_img=" + p_img + "]";
 	}
+	
 	
 	
 	

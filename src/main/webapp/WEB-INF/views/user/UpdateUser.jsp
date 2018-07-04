@@ -3,6 +3,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<%@taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
+
  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <tr height="500" align="center">
 		<td align="center" width="1000">
@@ -10,7 +12,6 @@
 		</tr>
  <script src="Register.js"></script>
  <script type="text/javascript">
- 
  	function passwordCheckFunction(){
  		var userPassword1=$('#userPassword1').val();
  	    var userPassword2=$('#userPassword2').val();
@@ -34,13 +35,12 @@
  		 })
  		 });
  	});
-
-
  </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+<sec:authentication property="principal" />
  <div id="container">
 	<center>
 		<h2 style="margin-top: 200px">회원 가입 </h2>
@@ -50,7 +50,8 @@
 						<td width="150">아이디
 						<input type="hidden" name="idDuplication" value="IdUncheck" ></td>
 						<td width="250">
-						<input class="form-control" type="text" name="u_id" id="id" readonly onkeydown="checkId()" value="${dto.u_id }" >
+						<input class="form-control" type="text" name="u_id" id="id" 
+						readonly onkeydown="checkId()" value="<sec:authentication property="name"/>" >
 						</td>
 					</tr>
 						<tr height="40">
@@ -63,15 +64,15 @@
 					</tr>
 						<tr height="40">
 						<td width="150">이름</td>
-						<td width="250"><input class="form-control" type="text" name="u_name" id="name" value="${dto.u_name }"></td>
+						<td width="250"><input class="form-control" type="text" name="u_name" id="name" value=<sec:authentication property="principal.u_id"/>></td>
 					</tr>
 						<tr height="40">
 						<td width="150">주소</td>
-						<td width="250"><input class="form-control" type="text" name="u_address" id="address" value="${dto.u_address }"></td>
+						<td width="250"><input class="form-control" type="text" name="u_address" id="address" value="${user.u_address }"></td>
 					</tr>
 						<tr height="40">
 						<td width="150">전화</td>
-						<td width="250"><input class="form-control" type="text" name="u_phone" value="${dto.u_phone}"></td>
+						<td width="250"><input class="form-control" type="text" name="u_phone" value="<sec:authentication property="principal.u_phone"/>"></td>
 					</tr>
 						<tr height="40">
 						<td colspan="2"><input type="button" value="수정하기" id="btnUpdate"><input type="button" value="탈퇴하기" id="btnDelete">

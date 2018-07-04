@@ -1,29 +1,24 @@
 package jun.tour.go.Service.User;
 
-import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import javax.inject.Inject;
+import javax.naming.ldap.ManageReferralControl;
+
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import jun.tour.go.Model.User.DAO.UserDAO;
 import jun.tour.go.Model.User.DTO.UserDTO;
 @Service
-public class UserServiceImpl implements UserService,UserDetailsService {
+public class UserServiceImpl implements UserService {
 
 	@Inject
 	UserDAO userDao;
 	
-	@Override
-	public String loginCheck(UserDTO dto) {
-		return userDao.loginCheck(dto);
-	}
 
-	@Override
-	public void insertUser(UserDTO dto) {
-		userDao.insertUser(dto);
-	}
+	
 
 	@Override
 	public UserDTO viewMember(String u_id) {
@@ -35,10 +30,10 @@ public class UserServiceImpl implements UserService,UserDetailsService {
 		userDao.updateUser(dto);
 	}
 
-	@Override
+	/*@Override
 	public boolean checkPw(String u_id, String u_password) {
 		return userDao.checkPw(u_id, u_password);
-	}
+	}*/
 
 	@Override
 	public void deleteUser(String u_id) {
@@ -52,11 +47,25 @@ public class UserServiceImpl implements UserService,UserDetailsService {
 	}
 
 	@Override
-	public UserDTO loadUserByUsername(String u_id) throws UsernameNotFoundException {
-
-		UserDTO user =  userDao.viewMember(u_id);
-		if(user==null) throw new UsernameNotFoundException("not found user");
-		return user;
+	public boolean getUser(String u_id) {
+		return userDao.getUser(u_id);
 	}
+
+	@Override
+	public String findId(String u_name,String u_phone) {
+		String list=userDao.findId(u_name,u_phone);
+		
+		return list;
+	}
+
+
+
+	
+
+	
+
+	
+	
+
 
 }

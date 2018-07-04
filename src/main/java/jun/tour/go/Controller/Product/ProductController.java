@@ -4,6 +4,7 @@ import java.io.File;
 
 import javax.inject.Inject;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,11 @@ public class ProductController {
 		@Inject
 		ProductService productService;
 	
+		@RequestMapping("Plan")
+		public String planview() {
+			return "Schedule/Plan";
+		}
+		
 		@RequestMapping("detail/{p_code}")
 		public ModelAndView detail(
 				@PathVariable int p_code,ModelAndView mav) {
@@ -27,7 +33,7 @@ public class ProductController {
 			return mav;
 		}
 				
-		
+		@Secured("ROLE_ADMIN")
 		@RequestMapping("insert.do")
 		public String insert(ProductDTO dto) {
 			String filename="-";

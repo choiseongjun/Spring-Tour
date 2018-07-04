@@ -10,24 +10,9 @@
 <meta name="description" content="Your description">
 <meta name="keywords" content="Your keywords">
 <meta name="author" content="Your name">
-<link rel="icon" href="images/favicon.ico" type="image/x-icon">
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-
-<link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="screen">
-<link rel="stylesheet" href="css/bootstrap-responsive.css" type="text/css" media="screen">
-	<link href="css/font-awesome.css" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
-
-<script type="text/javascript" src="js/jquery.js"></script>  
-<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
-<script type="text/javascript" src="js/superfish.js"></script>
-
-<script type="text/javascript" src="js/jquery.ui.totop.js"></script>
-
-<script type="text/javascript" src="js/jquery.caroufredsel.js"></script>
-<script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
 
 <script>
+
 $(document).ready(function() {
 	//	carouFredSel
 	$('#slider3 .carousel.main ul').carouFredSel({
@@ -73,101 +58,61 @@ $(window).load(function() {
 <%@ include file="../Header.jsp" %>
 </head>
 
-<body class="subpage">
-<div id="main">
 
-
-
-
-<div id="slider_wrapper">
-<div class="img"><img src="${path }/images/background.jpg" ></div>
-<img src="images/grad2.png" alt="" class="grad2">
-<div class="slider_bot">
-<div class="page_title">Hot Tours</div>
-<div class="breadcrumbs1">
-<div class="breadcrumbs1_inner"><a href="index.html">Home Page</a>&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;Hot Tours</div>	
-</div>
-</div>
-</div>
 
 <div id="content">
 <div class="container">
 <div class="row">
 <div class="span9">
-	<div class="row">
-<c:forEach var="row" items="${list }">
-<div class="span3">
-<div class="thumb2">
+	
+<h1>Our Best Tours</h1>
+
+<div class="row">
+<c:forEach var="p" items="${list }">
+<div class="span4">
+<div class="thumb1">
 	<div class="thumbnail clearfix">
-<figure class=""><img src="${path }/images/${row.p_img}" width="270px" height="270px" /></figure>
+		<figure class=""><img src="${path }/images/${p.p_img}"width="270px" height="270px"></figure>
 		<div class="caption">
-			<h4><a href="${path}/product/detail/${row.p_code}">${row.p_city }</a></h4>
+			<h4><a href="${path }/product/detail/${p.p_code}" >${p.p_city }</a></h4>
 			<p>
-				<strong>${row.p_price }</strong>
+				<strong>Price: $$ ${p.p_price }</strong>
 			</p>
 			<p>
-			${row.p_content }
+				${p.p_content } 
 			</p>			
 		</div>
-			
 	</div>
-
 </div>	
 </div>
-</c:forEach>
-
+</c:forEach>	
 </div>
 
 </div>
+<div class="span3">
+	
+<h2>Destination List</h2>
 
-<div class="bot1">
-<div class="container">
-<div class="row">
-<div class="span3">
-	<div class="bot1_title">follow us</div>
-	<div class="social_wrapper">
-		<ul class="social clearfix">
-		    <li><a href="#"><img src="images/social_ic1.png"></a></li>
-		    <li><a href="#"><img src="images/social_ic2.png"></a></li>
-		    <li><a href="#"><img src="images/social_ic3.png"></a></li>		    
-		    <li><a href="#"><img src="images/social_ic4.png"></a></li>	
-		    <li><a href="#"><img src="images/social_ic5.png"></a></li>	
-		    <li><a href="#"><img src="images/social_ic6.png"></a></li>	
-		</ul>
-	</div>
-</div>
-<div class="span3">
-	<div class="bot1_title">Destinations</div>
-	<ul class="ul0">
-	  <li><a href="#">Nam elit magna, hendrerit</a></li>
-	  <li><a href="#">Quisque nullatibulum libero</a></li>
-	  <li><a href="#">Scelerisque eget, malesuada at</a></li>
-	  <li><a href="#">Vivamus eget niiam cursus leo</a></li>
-	  <li><a href="#">Nulla facilisinean nec eros</a></li>
-	</ul>
-</div>
-<div class="span3">
-	<div class="bot1_title">Links</div>
-	<ul class="ul0">
-	  <li><a href="#">Nam elit magna, hendrerit</a></li>
-	  <li><a href="#">Quisque nullatibulum libero</a></li>
-	  <li><a href="#">Scelerisque eget, malesuada at</a></li>
-	  <li><a href="#">Vivamus eget niiam cursus leo</a></li>
-	  <li><a href="#">Nulla facilisinean nec eros</a></li>
-	</ul>
+<ul class="ul1">
+  <li><a href="#">Fusce euismod consequat</a></li>
+  <li><a href="#">Lorem ipsum dolor sit amet,</a></li>
+  <li><a href="#">Pellentesque sed dolor</a></li>
+  <li><a href="#">Aliquam congue fermentum</a></li>
+  <li><a href="#">Mauris accumsan nulla vel</a></li>
+  <li><a href="#">Sed in lacus ut adipiscing</a></li>
+  <li><a href="#">Fusce euismod consequat</a></li>
+  <li><a href="#">Lorem ipsum dolor sit amet,</a></li>
+  <li><a href="#">Pellentesque sed dolor</a></li>
+  <li><a href="#">Aliquam congue fermentum</a></li>
+  <li><a href="#">Mauris accumsan nulla vel</a></li>
+  <li><a href="#">Sed in lacus ut adipiscing</a></li>		            		      	      			      
+</ul>
+
+
+
+
+
 </div>	
-<div class="span3">
-	<div class="bot1_title">Contacts</div>
-	<div class="bot1_txt1">
-		Call for more information:<br>
-		<span>1 800 123 4567</span><br>
-
-		8901 Marmora Road,<br>
-Glasgow, D04 89GR.<br>
-Telephone: +1 800 123 1234<br>
-E-mail: <a href="#">mail@bteamny.com</a>
-	</div>
-</div>
 </div>	
 </div>	
 </div>

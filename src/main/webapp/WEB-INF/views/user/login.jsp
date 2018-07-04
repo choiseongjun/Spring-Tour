@@ -7,11 +7,17 @@
 <title>Insert title here</title>
 <%@ include file="../Header.jsp" %>
 <script>
+function findid(){
+	location.href = "${path}/user/findid.do";
+}
+function go() {
+	location.href = "${path}/user/joinpage.do";
+}
 $(function(){
 	$("#btnLogin").click(function(){
 	var userid=$("#u_id")	.val();
 	var passwd=$("#u_password").val();
-	if(userid==''){
+	if(userid==""){
 		alert("아이디를 입력하세요");
 		$("#u_id").focus();//입력 포커스 이동
 		return;//함수 종료
@@ -24,16 +30,17 @@ $(function(){
 	//폼 데이터를 서버로 제출
 
 
-	document.form1.action="${path}/user/login_check.do";
+	document.form1.action="${path }/user/login_check.do";
 	document.form1.submit();
 	});
 });
 </script>
 </head>
 <body>
+<div id="content">
 <center>
 <form name="form1" method="post">
-<table border="1" width="400px">
+<table border="1" width="400px" style="margin-top: 100px">
 	<tr>
 		<td>아이디</td>
 		<td><input name="u_id" id="u_id" ></td>
@@ -45,6 +52,8 @@ $(function(){
 		<tr>
 			<td colspan="2" align="center">
 			<input type="button" id="btnLogin" value="로그인">
+			<input type="button" onclick="go()"  value="회원가입">
+			<input type="button" onclick="findid()"  value="id찾기">
 			<c:if test="${message=='error' }">
 				<div style="color:red;">
 				아이디 또는 비밀번호가 일치하지 않습니다.
@@ -60,5 +69,6 @@ $(function(){
 </table>
 </form>
 	 </center>
+	 </div>
 </body>
 </html>

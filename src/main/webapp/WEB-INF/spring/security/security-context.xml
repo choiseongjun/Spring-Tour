@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+	<!-- Root Context: defines shared resources visible to all other web components -->
+		
+		<http pattern="/style/**" security="none" />
+		<http auto-config="true" use-expressions="true"
+		create-session="never">
+			<!-- 관리자 영역 설정 -->
+			<intercept-url pattern="/Admin/**"
+			access="hasRole('ROLE_ADMIN')" />
+			<!-- 권한에 관계없이 접속 가능한 영역(guest도 접속가능) -->
+			<intercept-url pattern="/resources/**" access="permitAll" /> 
+			<intercept-url pattern="/user/**" access="permitAll" /> 
+			<!-- 로그인한 사용자 영역 -->
+			<intercept-url pattern="/**"
+			access=
+				"hasAnyRole('ROLE_USER','ROLE_ADMIN','ROLE_GUEST')" />
+				<form-login login-page="/user/home"
+					login-processing-url="/user/login_check.do"
+					authentication-success-handler-ref=
+					"userLoginSuccessHandler"
+					authentication-failure-handler-ref=
+					"userLoginFailureHandler"
+					username-parameter="u_id"
+					password-parameter="u_password" />
+					
+			<!-- max  session="1" 동시접속 막기
+				error-if-maximum-exceeded="true" 로그인세션
+				초과시 에러 옵션 expired-url="/user/login"
+				세션 만료시 이동할 주소 -->
+				
+			<session-management>		
+			<concurrency-control max-sessions="1"
+				expired-url="/user/login.do"
+				error-if-maximum-exceeded="true" />
+			</session-management>
+		<!-- 로그아웃 관련 처리 -->
+	<logout delete-cookies=
+	"JSESSIONID,SPRING_SECURITY_REMEMBER_ME_COOKIE"
+		logout-success-url="/user/login.do"
+		logout-url="/user/logout.do"
+		invalidate-session="true" />
+		<!-- 접근 권한이 없는 경우의 코드 -->
+	<access-denied-handler ref="userDeniedHandler" />
+	<!-- 자동 로그인 관련 쿠키 저장 ,
+	세션이 종료된 후에도 자동 로그인할 수 있는 기능
+	86400 1일,604800 7일-->
+	<remember-me key="userKey"
+	token-validity-seconds="86400" />
+		</http>
+		<beans:bean id="userDeniedHandler"
+			class=
+			"jun.tour.go.Service.security.userDeniedHandler"  />
+		<beans:bean id="userLoginSuccessHandler"
+		class=
+		"jun.tour.go.Service.security.userLoginSuccessHandler" />
+		<beans:bean id="userLoginFailureHandler"
+			class=
+			"jun.tour.go.Service.security.userLoginFailureHandler" />
+			<!-- 로그인 인증을 처리하는 빈 -->
+		<beans:bean id="userService"
+		class="jun.tour.go.Service.security.userAuthenticationService" >
+			<beans:constructor-arg name="sqlSession" ref="sqlSession" />
+		</beans:bean> 
+		<!-- 사용자가 입력한 비밀번호를 암호화된 비밀번호와 체크하는 로직이 포함됨 -->
+	<authentication-manager>
+		<authentication-provider user-service-ref="userService">
+			<password-encoder ref="passwordEncoder">
+				<salt-source user-property="username" />
+			</password-encoder>
+		</authentication-provider>
+	</authentication-manager>
+	<!-- 암호화 빈 -->	
+	<beans:bean id="passwordEncoder"
+	class=
+	"org.springframework.security.authentication.encoding.ShaPasswordEncoder">
+		<beans:constructor-arg name="strength" value="256" />
+	</beans:bean>
+	
+</beans:beans>

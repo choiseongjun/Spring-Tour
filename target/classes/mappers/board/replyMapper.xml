@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="reply">
+  	<insert id="insertReply">
+insert into reply (rno,bno,replytext,replyer) values
+		( reply_seq.nextval, #{bno}, #{replytext}, #{replyer} )
+  	</insert>
+  	
+  	<select id="listReply" resultType="jun.tour.go.Model.Board.DTO.ReplyDTO">
+		  	select rno,bno,replyer,regdate,updatedate,u_name,replytext
+		   from reply r,t_user m
+		   where r.replyer=m.u_id and bno=#{bno}
+		   order by rno
+  	</select>
+  </mapper>

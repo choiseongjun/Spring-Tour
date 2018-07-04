@@ -4,6 +4,26 @@
   
   <mapper namespace="cart">
   
+  <update id="modifyCart">
+  	update t_reserve
+  	set r_personnel=#{r_personnel}
+  	where r_id=#{r_id}
+  </update>
+  
+  <select id="Cart_money"
+  resultType="jun.tour.go.Model.Cart.DTO.CartDTO">
+   select p_city,sum(p_price*r_personnel) money
+  from t_reserve r,t_product p
+  where r.p_code=p.p_code
+  group by p_city
+  order by p_city
+  </select>
+  
+  <delete id="deleteAll">
+  delete from t_reserve
+  where u_id=#{u_id}
+  </delete>
+  
   <delete id="delete">
   	delete from t_reserve
   	where r_id=#{r_id}
@@ -23,7 +43,7 @@ and u_id=#{u_id}
   
   <select id="listCart"
   resultType="jun.tour.go.Model.Cart.DTO.CartDTO">
-  select r_id,u.u_id,u.u_name,
+  select r_id,u.u_id,u.u_name,p.p_img,p.p_content,
         p.p_code,p_city,r_personnel,p_price,p_date
         ,p_price*r_personnel money
 from t_user u,t_reserve r,t_product p

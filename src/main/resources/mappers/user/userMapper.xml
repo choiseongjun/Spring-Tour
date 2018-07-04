@@ -3,13 +3,22 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="user">
-  <select id="login_check" resultType="String" parameterType="jun.tour.go.Model.User.DTO.UserDTO">
+  
+  <select id="findid" resultType="String" parameterType="java.util.Map" >
+select u_id  from t_user where u_name=#{u_name} and u_phone=#{u_phone}
+    </select>
+   <select id="getCheakId" resultType="int">
+
+        SELECT count(*) FROM t_user WHERE u_id=#{u_id}
+
+    </select>
+  
+ <!--  <select id="login_check" resultType="String" parameterType="jun.tour.go.Model.User.DTO.UserDTO">
   	select u_name from t_user
   	where u_id=#{u_id} and u_password=#{u_password}
-  </select>
-  <insert id="joinuser">
-  	insert into t_user(u_id,u_password,u_name,u_address,u_phone) 
-  	values(#{u_id},#{u_password},#{u_name},#{u_address},#{u_phone})
+  </select> -->
+  <insert id="insertUser">
+  		insert into t_user values(#{u_id},#{u_password},#{u_name},#{u_address},#{u_phone},1,#{authority})
   </insert>
   
   <select id="ViewUser"
@@ -33,5 +42,11 @@
   	delete from t_user
   	where u_id=#{u_id}
   </delete>
+  <select id="selectUser" resultType="java.util.Map">
+  		select u_id as username,u_password as password,
+  		u_name,enabled,authority,u_phone,u_address
+  		from t_user
+  		where u_id=#{u_id}
+  	</select>
   
   </mapper>

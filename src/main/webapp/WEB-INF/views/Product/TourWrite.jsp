@@ -4,13 +4,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="/resources/js/jquery-ui-timepicker-addon.js"></script>
+
+
+
 <title>Insert title here</title>
-<%@ include file="../Header.jsp" %>
+<%@ include file="../Header.jsp" %> 
+
 </head>
 <body>
 <script>
-function product_write(){
-/* 	var product_name=$("#p_city").val();
+$(function() {
+	  $("#datepicker").datepicker();
+	 });
+	function product_write(){
+  var product_name=$("#p_city").val();
 	var price=$("#p_price").val();
 	var description=$("#p_content").val();
 	if(product_name==""){
@@ -27,11 +36,14 @@ function product_write(){
 		alert("상품 설명을 입력하세요");
 		$("#p_content").focus();
 		return;
-	} */
+	}  
 	document.form1.action="${path}/product/insert.do";
 	document.form1.submit();
-	}
+	}  
+	
 </script>
+<div id="content">
+<center>
 <h2>상품 등록</h2>
 <form name="form1" method="post"
 	enctype="multipart/form-data"><!-- 파일첨부 속성 -->
@@ -42,7 +54,7 @@ function product_write(){
 		</tr>
 		<tr>
 			<td>기간</td>
-			<td><input name="p_date" id="p_date"></td>
+			<td><input type="text" name="p_date"  id="datepicker"></td>
 		</tr>
 		<tr>
 			<td>항공사</td>
@@ -51,7 +63,7 @@ function product_write(){
 		<tr>
 			<td>상품설명</td>
 			<td><textarea rows="5" cols="60" 
-			name="p_content" id="p_content"></textarea>
+			name="p_content" id="p_content" ></textarea>
 			</td>
 			</tr>
 			<tr>
@@ -64,7 +76,7 @@ function product_write(){
 			</tr>
 			<tr>
 			<td>예약</td>
-			<td><input name="p_reserve" id="p_reserve"></td>
+			<td><input type="text" name="p_reserve" ></td>
 		</tr>
 		<tr>
 			<td>도시코드</td>
@@ -75,10 +87,12 @@ function product_write(){
 					<input type="button" value="등록" 
 					onclick="product_write()">
 					<input type="button" value="목록"
-					onclick="location.href='${path}/admin/product/list.do'">
+					onclick="location.href='${path}/product/list.do'">
 				</td>
 			</tr>
 	</table>
 	</form>
+	</center>
+	</div>
 </body>
 </html>

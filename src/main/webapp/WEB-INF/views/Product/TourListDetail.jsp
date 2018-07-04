@@ -9,11 +9,12 @@
 </head>
 <body>
 	<center>
+	<div id="content">
 		<h2>상품정보</h2>
 		<table>
 			<tr>
-				<td><img src="${path }/images/${dto.p_img}" width="300px"
-					height="300px"></td>
+				<td><img src="${path }/images/${dto.p_img}" width="500px"
+					height="500px"></td>
 				<td align="center">
 					<table>
 						<tr>
@@ -40,6 +41,7 @@
 											<option value="${i }">${i }인</option>
 										</c:forEach>
 									</select>
+								
 								 <input type="submit" value="예약하기">
 								</form>
 								
@@ -49,6 +51,7 @@
 				</td>
 			</tr>
 		</table>
+		</div>
 	</center>
 </body>
 </html>

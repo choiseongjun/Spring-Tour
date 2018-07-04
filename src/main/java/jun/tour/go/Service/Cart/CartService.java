@@ -9,10 +9,10 @@ public interface CartService {
 	public void insert(CartDTO dto);
 	public List<CartDTO> listCart(String u_id);
 	public void delete(int r_id);
-	public void deleteAll(String userid);
+	public void deleteAll(String u_id);
 	public void update(int cart_id);
 	public int sumMoney(String u_id);
-	public int countCart(String userid,int product_id);
+	public int countCart(String u_id,int product_id);
 	public void updateCart(CartDTO dto);
 	public void modifyCart(CartDTO dto);
 }
