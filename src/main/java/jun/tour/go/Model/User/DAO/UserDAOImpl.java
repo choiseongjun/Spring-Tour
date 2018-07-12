@@ -2,7 +2,6 @@ package jun.tour.go.Model.User.DAO;
 
 import org.apache.ibatis.session.SqlSession;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +10,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Repository;
 
+import jun.tour.go.Model.User.DTO.MemberDTO;
 import jun.tour.go.Model.User.DTO.UserDTO;
 @Repository
 public class UserDAOImpl implements UserDAO {
@@ -86,6 +86,11 @@ public class UserDAOImpl implements UserDAO {
 		map.put("u_phone",u_phone);
 		System.out.println("map값"+map);
 		return sqlSession.selectOne("user.findid",map);
+	}
+
+	@Override
+	public List<MemberDTO> memberList() {
+		return sqlSession.selectList("user.UserList");
 	}
 
 	

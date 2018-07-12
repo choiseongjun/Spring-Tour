@@ -87,6 +87,7 @@ $(window).load(function() {
 						<li><a href="${path}/product/write.do">상품 등록하기</a></li>
 						<li><a href="${path}/chart0.do">차트로 보기</a></li>
 						<li><a href="${path }/Board/list.do">자유 게시판</a></li>
+						<li><a href="${path }/user/list.do">회원 목록</a></li>
 						</s:authorize>
 							<s:authorize ifNotGranted="ROLE_USER"><s:authorize ifNotGranted="ROLE_ADMIN">
 						<li class="sub-menu sub-menu-1"><a href="${path}/user/login.do">LOGIN<i class="fa fa-angle-down" aria-hidden="true"></i></a>

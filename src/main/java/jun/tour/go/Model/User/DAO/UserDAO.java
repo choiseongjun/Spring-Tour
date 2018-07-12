@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import jun.tour.go.Model.User.DTO.MemberDTO;
 import jun.tour.go.Model.User.DTO.UserDTO;
 
 public interface UserDAO {
@@ -19,4 +20,5 @@ public interface UserDAO {
 	public String adminloginCheck(UserDTO dto);
 	 public boolean getUser(String u_id);
 	 public String findId(String u_name,String u_phone);
+	 public List<MemberDTO> memberList();
 }

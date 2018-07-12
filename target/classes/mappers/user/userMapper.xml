@@ -17,6 +17,11 @@ select u_id  from t_user where u_name=#{u_name} and u_phone=#{u_phone}
   	select u_name from t_user
   	where u_id=#{u_id} and u_password=#{u_password}
   </select> -->
+  <select id="UserList" resultType="jun.tour.go.Model.User.DTO.MemberDTO"  >
+  select u_id,u_name,u_address,u_phone from t_user
+  </select>
+  
+  
   <insert id="insertUser">
   		insert into t_user values(#{u_id},#{u_password},#{u_name},#{u_address},#{u_phone},1,#{authority})
   </insert>

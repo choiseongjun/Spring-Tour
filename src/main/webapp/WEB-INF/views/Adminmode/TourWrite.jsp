@@ -4,9 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script src="/resources/js/jquery-ui-timepicker-addon.js"></script>
 
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 
 
 <title>Insert title here</title>
@@ -16,7 +18,9 @@
 <body>
 <script>
 $(function() {
-	  $("#datepicker").datepicker();
+	  $("#datepicker").datepicker({
+		    dateFormat: 'yy-mm-dd'
+	  });
 	 });
 	function product_write(){
   var product_name=$("#p_city").val();
@@ -74,10 +78,6 @@ $(function() {
 				<td>상품이미지</td>
 				<td><input type="file" name="file1" id="file1"></td>
 			</tr>
-			<tr>
-			<td>예약</td>
-			<td><input type="text" name="p_reserve" ></td>
-		</tr>
 		<tr>
 			<td>도시코드</td>
 			<td><input name="p_ctycode" id="p_ctycode"></td>

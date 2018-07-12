@@ -16,7 +16,7 @@ public class userDeniedHandler implements AccessDeniedHandler {
 			throws IOException, ServletException {
 		req.setAttribute("errMsg","관리자만 사용할 수 있는 기능입니다.");
 		req.getRequestDispatcher(
-				"/WEB-INF/views/error/403error.jsp").forward(req, res);
+				"/WEB-INF/views/error/403.jsp").forward(req, res);
 		/*String url="/WEB-INF/views/user/denied.jsp"
 		 * RequestDispatcher rd=req.getRequestDispatcher(url);
 		 * rd.forward(req,res)*/

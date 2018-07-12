@@ -2,6 +2,7 @@ package jun.tour.go.Controller.User;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import jun.tour.go.Model.User.DAO.UserDAO;
+import jun.tour.go.Model.User.DTO.MemberDTO;
 import jun.tour.go.Model.User.DTO.UserDTO;
 import jun.tour.go.Service.User.UserService;
 import jun.tour.go.Service.security.ShaEncoder;
@@ -55,21 +57,6 @@ public class UserController {
 		return "home";
 	}
 	
-	@ControllerAdvice//예외처리
-	public class ExceptionControllerAdvice {
-
-	 
-	    @ExceptionHandler(Exception.class)
-	    public ModelAndView exception(Exception e) {        
-	        ModelAndView mav = new ModelAndView("exception");
-	        mav.addObject("name", e.getClass().getSimpleName());
-	        mav.addObject("message", e.getMessage());
-
-	        return mav;
-	    }
-
-	}
-	
 	
 	
 	@RequestMapping("/user/home")
@@ -77,6 +64,15 @@ public class UserController {
 		System.out.println("경로"+"/user/home");
 		return "home";
 	}
+	@RequestMapping("user/list.do")
+	public String MList(Model model) {
+		List<MemberDTO> list = userService.memberList();
+        model.addAttribute("list", list);
+        System.out.println("회원목록"+list);
+		return "Adminmode/MemberList";
+	}
+	
+	
 	//시큐리티적용 회원가입(shaencoder 적용)
 	@RequestMapping("user/joinuser.do")
 	public String insertUser(
@@ -166,11 +162,10 @@ public class UserController {
 
 		authentication= SecurityContextHolder.getContext().getAuthentication();
 		String u_id = authentication.getName().toString();
-		UserDTO userDto=(UserDTO) authentication.getPrincipal();
-	//model.addAttribute("dto",userDao.viewMember(u_id) );
-		// view.jsp에 포워딩
+		
+	
 		model.addAttribute("auth",authentication.getPrincipal());
-		model.addAttribute("dto",userDto);
+	
 		return "user/UpdateUser";
 	}
 

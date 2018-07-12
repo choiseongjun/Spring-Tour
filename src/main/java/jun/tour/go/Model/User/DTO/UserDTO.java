@@ -9,24 +9,15 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.Entity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
-@Entity
+
 public class UserDTO extends User{
 
 	public String u_id;
-	
 	private String u_password;
 	private String u_name;
 	private String u_address;
 	private String u_phone;
 	
-
-	
-
-
-	public UserDTO(String username, String password, Collection<? extends GrantedAuthority> authorities) {
-		super(username, password, authorities);
-	}
-
 
 	public String getU_password() {
 		return u_password;

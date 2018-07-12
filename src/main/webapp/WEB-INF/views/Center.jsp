@@ -222,16 +222,7 @@ $(window).load(function() {
 </div>
 <div class="span3">
 	
-<h2>Services</h2>
 
-<ul class="ul1">
-  <li><a href="#">Tour reservation</a></li>
-  <li><a href="#">Insurance</a></li>
-  <li><a href="#">Tickets online</a></li>
-  <li><a href="#">Hotel booking</a></li>
-  <li><a href="#">Consultation</a></li>
-  <li><a href="#">Transfer</a></li>		            		      	      			      
-</ul>
 
 
 

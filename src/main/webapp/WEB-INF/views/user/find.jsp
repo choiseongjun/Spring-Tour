@@ -41,17 +41,17 @@ $(document).on('click','#findId',function(){
 <div id="content">
 <center>
 
-<table border="1" width="400px" style="margin-top: 100px">
+<table border="0" width="400px" style="margin-top: 100px">
 	<tr>
-		<td>이름</td>
+		<td><h5>이름</h5></td>
 		<td><input type="text" name="u_name" id="u_name" ></td>
 		</tr>
 		<tr>
-			<td>휴대폰번호</td>
+			<td><h5>휴대폰번호</h5></td>
 			<td><input type="text" name="u_phone" id="u_phone"></td>
 		</tr>
 	<tr>
-	<td colspan="2"><button id="findId">아이디 찾기</button></td>
+	<td colspan="2"><button id="findId" class="btn btn-default">아이디 찾기</button></td>
 	</tr>
 	<td>${udto.u_id }</td>
 	<span id="u_idlist"></span>

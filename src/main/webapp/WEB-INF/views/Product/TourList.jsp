@@ -69,8 +69,8 @@ $(window).load(function() {
 
 <div class="row">
 <c:forEach var="p" items="${list }">
-<div class="span4">
-<div class="thumb1">
+<div class="span2">
+<div class="thumb2">
 	<div class="thumbnail clearfix">
 		<figure class=""><img src="${path }/images/${p.p_img}"width="270px" height="270px"></figure>
 		<div class="caption">
@@ -78,9 +78,7 @@ $(window).load(function() {
 			<p>
 				<strong>Price: $$ ${p.p_price }</strong>
 			</p>
-			<p>
-				${p.p_content } 
-			</p>			
+		
 		</div>
 	</div>
 </div>	
@@ -91,7 +89,7 @@ $(window).load(function() {
 </div>
 <div class="span3">
 	
-<h2>Destination List</h2>
+<h2>광고리스트</h2>
 
 <ul class="ul1">
   <li><a href="#">Fusce euismod consequat</a></li>

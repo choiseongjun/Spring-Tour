@@ -260,12 +260,10 @@ CKEDITOR.replace("content",{
 </form>
 <!-- 댓글 작성 -->
 <div style="width:700px; text-align:center;">
-	<c:if test="${pageContext.request.userPrincipal.name==dto.writer||pageContext.request.userPrincipal.name=='ad'}">
 	 	<textarea rows="5" cols="80" id="replytext"
 	 		placeholder="댓글을 작성하세요"></textarea>
 	 	<br>
 	 	<button type="button" id="btnReply">댓글쓰기</button>
-	 </c:if>
 </div>
 <!-- 댓글 목록 -->
 <div id="listReply"></div>

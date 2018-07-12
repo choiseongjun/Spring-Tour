@@ -53,10 +53,10 @@ public class ProductController {
 			productService.insertProduct(dto);
 			return "/home";
 		}
-		
+		@Secured("ROLE_ADMIN")
 		@RequestMapping("write.do")
 		public String write() {
-			return "Product/TourWrite";
+			return "Adminmode/TourWrite";
 		}
 		
 		

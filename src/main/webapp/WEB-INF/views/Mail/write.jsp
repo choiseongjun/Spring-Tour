@@ -40,7 +40,7 @@
 발신자 이메일:<input name="senderMail"><br>
 수신자 이메일:<input name="receiveMail"><br>
 제목:<input name="subject"><br>
-내용:<textarea rows="5" cols="80" name="message"></textarea>
+내용:<textarea rows="5" cols="800" name="message"></textarea>
 <br>
 <input type="submit" value= "전송">
 </form>

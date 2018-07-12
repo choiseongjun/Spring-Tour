@@ -17,21 +17,18 @@
 					height="500px"></td>
 				<td align="center">
 					<table>
+					
 						<tr>
-							<td>상품명</td>
-							<td>${dto.p_city}</td>
-						</tr>
-						<tr>
-							<td>가격</td>
+							<td>가격:</td>
 							<td>${dto.p_price}</td>
 						</tr>
 						<tr>
-							<td>내용</td>&nbsp;
+							<td>내용:</td>&nbsp;
 							<td>${dto.p_content}</td>
 						</tr>
 						<tr>
-							<td>날짜</td>
-							<td>${dto.p_date }</td>
+							<td>날짜:</td>
+							<td>${dto.p_date.substring(0,10) }</td>
 						<tr>
 							<td colspan="2">
 								<form name="form" method="post" action="${path}/Cart/insert.do">
@@ -41,8 +38,9 @@
 											<option value="${i }">${i }인</option>
 										</c:forEach>
 									</select>
-								
-								 <input type="submit" value="예약하기">
+								<div class="btn-group" role="group" aria-label="...">
+								 <input type="submit" value="예약하기"  class="btn btn-default">
+								 </div>
 								</form>
 								
 							</td>

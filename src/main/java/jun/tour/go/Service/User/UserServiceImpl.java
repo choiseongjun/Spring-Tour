@@ -1,15 +1,14 @@
 package jun.tour.go.Service.User;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.naming.ldap.ManageReferralControl;
 
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import jun.tour.go.Model.User.DAO.UserDAO;
+import jun.tour.go.Model.User.DTO.MemberDTO;
 import jun.tour.go.Model.User.DTO.UserDTO;
 @Service
 public class UserServiceImpl implements UserService {
@@ -17,9 +16,6 @@ public class UserServiceImpl implements UserService {
 	@Inject
 	UserDAO userDao;
 	
-
-	
-
 	@Override
 	public UserDTO viewMember(String u_id) {
 		return userDao.viewMember(u_id);
@@ -56,6 +52,12 @@ public class UserServiceImpl implements UserService {
 		String list=userDao.findId(u_name,u_phone);
 		
 		return list;
+	}
+
+	@Override
+	public List<MemberDTO> memberList() {
+		// TODO Auto-generated method stub
+		return userDao.memberList();
 	}
 
 

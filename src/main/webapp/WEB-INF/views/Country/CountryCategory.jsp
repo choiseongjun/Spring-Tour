@@ -60,8 +60,6 @@ $(window).load(function() {
 <div class="row">
 <div class="span9">
 	
-<h1>Our Best Tours</h1>
-
 <div class="row">
 <c:forEach var="p" items="${list }">
 <div class="span3">
@@ -71,11 +69,9 @@ $(window).load(function() {
 		<div class="caption">
 			<h4><a href="${path }/product/detail/${p.p_code}" >${p.p_city }</a></h4>
 			<p>
-				<strong>Price: $$ ${p.p_price }</strong>
+				<strong>Price:$ ${p.p_price }</strong>
 			</p>
-			<p>
-				${p.p_content } 
-			</p>			
+		
 		</div>
 	</div>
 </div>	
@@ -86,7 +82,7 @@ $(window).load(function() {
 </div>
 <div class="span3">
 	
-<h2>Destination List</h2>
+<h2>광고 리스트</h2>
 
 <ul class="ul1">
   <li><a href="#">Fusce euismod consequat</a></li>

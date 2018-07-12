@@ -24,7 +24,7 @@ public class ChartController {
 		try {
 			JFreeChart chart=chartService.createChart();
 			ChartUtilities.writeChartAsPNG(
-					response.getOutputStream(), chart,600, 250);
+					response.getOutputStream(), chart,1200, 450);
 		}catch(Exception e){
 			e.printStackTrace();
 		}

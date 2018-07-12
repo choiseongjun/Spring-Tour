@@ -1,8 +1,9 @@
 package jun.tour.go.Service.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
+
+import jun.tour.go.Model.User.DTO.MemberDTO;
 import jun.tour.go.Model.User.DTO.UserDTO;
 
 public interface UserService{
@@ -14,4 +15,5 @@ public interface UserService{
 	public String adminloginCheck(UserDTO dto);
 	 public boolean getUser(String u_id);
 	 public String findId(String u_name,String u_phone);
+	 public List<MemberDTO> memberList();
 }

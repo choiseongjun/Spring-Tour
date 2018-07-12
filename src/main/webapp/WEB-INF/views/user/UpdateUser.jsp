@@ -41,9 +41,10 @@
 </head>
 <body>
 <sec:authentication property="principal" />
+<div id="content">
  <div id="container">
 	<center>
-		<h2 style="margin-top: 200px">회원 가입 </h2>
+		<h2 style="margin-top: 200px">회원 정보 수정하기</h2>
 		<form  method="post" name="form1">
 			<table width="400" border="1" bordercolor="gray">
 					<tr height="40">
@@ -68,7 +69,7 @@
 					</tr>
 						<tr height="40">
 						<td width="150">주소</td>
-						<td width="250"><input class="form-control" type="text" name="u_address" id="address" value="${user.u_address }"></td>
+						<td width="250"><input class="form-control" type="text" name="u_address" id="address" value="${auth.u_phone}"></td>
 					</tr>
 						<tr height="40">
 						<td width="150">전화</td>
@@ -82,6 +83,7 @@
 				</table>
 		</form>
 	</center>
+	</div>
 	</div>
 </body>
 </html>
